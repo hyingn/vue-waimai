@@ -7,13 +7,13 @@
         <img class="cart-img carted" :class="totalPrice>0 ? 'imgshow' : ''" src="../assets/cartd.png" alt="">
         <span>￥{{totalPrice}}</span></li>
       <li class="flex1">配送费￥{{deliveryPrice}}</li>
-      <li class="flex1" :class="{jiesuan: this.totalPrice >= this.minPrice}">{{payDesc}}</li>
+      <li class="flex1" :class="{jiesuan: this.totalPrice >= this.minPrice}" @click="goJieSuan">{{payDesc}}<router-link v-if="jsFlag" to="/jiesuan">去结算</router-link></li>
     </ul>
   </div>
 </template>
 <style>
   .cart-box {
-    position: absolute;
+    position: fixed;
     width: 100%;
     bottom: 0;
     z-index: 999;
@@ -45,12 +45,15 @@
   .imgshow {
     display: inline-block;
   }
+  .jiesuan a {
+    color: #fff;
+  }
 </style>
 <script>
   import cartDetail from './cartDetail.vue'
   export default{
     components: {
-      'cart-dtail':cartDetail
+      'cart-dtail': cartDetail
     },
     props: {
       minPrice: {
@@ -72,7 +75,8 @@
     },
     data () {
       return {
-        sDetail: false
+        sDetail: false,
+        jsFlag: 0
       }
     },
     created () {},
@@ -91,14 +95,21 @@
           let money = this.minPrice - this.totalPrice
           return '还差￥' + money + '起送'
         } else {
-          return '去结算'
+          this.jsFlag = 1
         }
       }
     },
     methods: {
       showDetail () {
-        if (this.totalPrice>0) {
+        if (this.totalPrice > 0) {
           this.sDetail = !this.sDetail
+        }
+      },
+      goJieSuan () {
+        if (this.jsFlag == 1) {
+          localStorage.clear()
+          let jsList = this.selectFoods
+          localStorage.setItem('select', JSON.stringify(jsList))
         }
       }
     }

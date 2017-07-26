@@ -112,6 +112,7 @@
   }
   .type-box {
     padding: 12px;
+    padding-bottom: 60px;
   }
   .type-box p {
     text-align: left;

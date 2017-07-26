@@ -26,7 +26,7 @@
     </div>
   </div>
     <food :foodSec="foodSec" :selectFoods="selectFood" ref="food"></food>
-    <v-cart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice" :selectFoods="selectFood"></v-cart>
+    <!--<v-cart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice" :selectFoods="selectFood"></v-cart>-->
   </div>
 </template>
 <style>
@@ -113,7 +113,6 @@
       this.$http.get('/api/goods').then(response => {
         // get body data
         this.goods = response.data.data
-        console.log(this.goods)
         this.$nextTick(() => {
           this._initScroll()
         })
@@ -130,7 +129,6 @@
     methods: {
       foodDetail (item) {
         this.foodSec = item
-        console.log(this.foodSec)
         this.$refs.food.show()
       },
       _initScroll () {

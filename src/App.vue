@@ -7,11 +7,13 @@
       <li class="flex1"><router-link to="/seller">商家</router-link></li>
     </ul>
     <router-view :seller="seller"></router-view>
+    <v-cart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice" ></v-cart>
   </div>
 </template>
 
 <script>
   import header from './components/header.vue'
+  import cart from './components/cart.vue'
   export default {
     data () {
       return {
@@ -19,7 +21,8 @@
       }
     },
     components: {
-      'v-header': header
+      'v-header': header,
+      'v-cart' : cart
     },
     created () {
       this.$http.get('/api/seller').then(response => {

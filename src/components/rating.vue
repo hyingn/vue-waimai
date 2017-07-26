@@ -50,6 +50,7 @@
   .clearfix {
     clear: both;
     overflow: hidden;
+    padding-bottom: 60px;
   }
   .rating-box {
     font-size: 14px;
