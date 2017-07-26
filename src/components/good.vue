@@ -26,7 +26,7 @@
     </div>
   </div>
     <food :foodSec="foodSec" :selectFoods="selectFood" ref="food"></food>
-    <!--<v-cart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice" :selectFoods="selectFood"></v-cart>-->
+    <v-cart :minPrice="seller.minPrice" :deliveryPrice="seller.deliveryPrice" :selectFoods="selectFood"></v-cart>
   </div>
 </template>
 <style>
