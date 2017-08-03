@@ -1,7 +1,9 @@
 <template>
   <div class="btn-control fr">
     <p class="fr btn-group">
-      <span class="minus" v-show="food.count>0" @click="countMin($event)"></span>
+      <transition name="fade">
+         <span class="minus" v-show="food.count>0" @click="countMin($event)"></span>
+      </transition>
       <span v-show="food.count>0">{{food.count}}</span>
       <span class="add" @click="countAdd($event)"></span>
     </p>
@@ -32,6 +34,12 @@
   .btn-group span{
     display: inline-block;
     vertical-align: middle;
+  }
+  .fade-enter-active, .fade-leave-active {
+    transition: width .5s
+  }
+  .fade-enter, .fade-leave-to {
+    width: 0
   }
 </style>
 <script>
